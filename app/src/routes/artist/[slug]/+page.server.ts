@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		},
 	});
 	const data = await response.json();
-	if (!response.ok) throw error(500, response.statusText);
+	if (!response.ok) error(500, response.statusText);
 	const page = parseResponse(data);
 
 	return Object.assign(page);

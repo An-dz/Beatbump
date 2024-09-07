@@ -7,7 +7,7 @@ export const load: PageLoad = async ({ url, params, fetch }) => {
 	// const data = await meta.body
 
 	if (!id) {
-		throw redirect(301, "/trending");
+		redirect(301, "/trending");
 	}
 
 	const [data, list] = await Promise.all([

@@ -47,10 +47,10 @@ export const GET: RequestHandler = async ({ url }) => {
 			continuation: ctoken !== "" ? { continuation: ctoken, ctoken, itct: `${itct}`, type: "next" } : undefined,
 		});
 		if (!response) {
-			throw error(500, "Failed to send the search request");
+			error(500, "Failed to send the search request");
 		}
 		if (!response.ok) {
-			throw error(response.status, response.statusText);
+			error(response.status, response.statusText);
 		}
 		const data = await response.json();
 		// console.log("RESPONSE", data);
@@ -69,7 +69,7 @@ export const GET: RequestHandler = async ({ url }) => {
 		return json(results);
 	} catch (err) {
 		console.error(err);
-		throw error(500, err);
+		error(500, err);
 	}
 };
 

@@ -26,7 +26,7 @@ export const load = async ({
 	const { tracks = [], header = {}, continuations = {}, carouselContinuations, visitorData } = await data;
 	if (!response.ok) {
 		console.log("ERROR");
-		throw error(response.status, response.statusText);
+		error(response.status, response.statusText);
 	}
 
 	return {

@@ -57,9 +57,9 @@ async function getPlaylistContinuation(
 		params: {},
 		continuation,
 	});
-	if (response === null) throw error(500, { message: "Error fetching playlist" });
+	if (response === null) error(500, { message: "Error fetching playlist" });
 	if (!response.ok) {
-		throw error(response.status, response.statusText);
+		error(response.status, response.statusText);
 	}
 
 	const data = await response.json();
@@ -139,7 +139,7 @@ async function getPlaylist(browseId: string, referrer: string) {
 		},
 	);
 	if (!response.ok) {
-		throw error(response.status, { message: response.statusText });
+		error(response.status, { message: response.statusText });
 	}
 
 	const data = await response.json();

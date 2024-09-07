@@ -24,13 +24,13 @@ export const GET: RequestHandler = async ({ url, locals }) => {
 		});
 
 		if (!response.ok) {
-			throw error(response.status, response.statusText);
+			error(response.status, response.statusText);
 		}
 		const data = await response.json();
 
 		return json(data);
 	} catch (err) {
 		console.error(err);
-		throw error(500, err);
+		error(500, err);
 	}
 };

@@ -42,7 +42,7 @@ export const GET: RequestHandler = async ({ url }) => {
 		},
 	}).then((response) => {
 		if (!response.ok) {
-			throw error(response.status, response.statusText);
+			error(response.status, response.statusText);
 		}
 		return response.json();
 	});

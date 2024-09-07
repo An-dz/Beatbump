@@ -7,7 +7,7 @@ export const load = async ({ fetch, url, parent }: Parameters<PageLoad>[0]) => {
 	const response = await data.json();
 
 	if (!data.ok) {
-		throw error(500, data.statusText);
+		error(500, data.statusText);
 	}
 	return {
 		response,

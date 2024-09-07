@@ -1,23 +1,23 @@
 // /* eslint-disable no-undef */
-import adapterCfw from "@sveltejs/adapter-cloudflare-workers";
-import adapterCf from "@sveltejs/adapter-cloudflare";
+// import adapterCfw from "@sveltejs/adapter-cloudflare-workers";
+// import adapterCf from "@sveltejs/adapter-cloudflare";
 import vercel from "@sveltejs/adapter-vercel";
 import netlify from "@sveltejs/adapter-netlify";
 import node from "@sveltejs/adapter-node";
 import path from "path";
-import sveltePreprocess from "svelte-preprocess";
+import { sveltePreprocess } from "svelte-preprocess";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const dev = process.env["NODE_ENV"] === "development";
-const ENV_ADAPTER = process.env["BB_ADAPTER"] ?? "cloudflare-workers";
+const ENV_ADAPTER = process.env["BB_ADAPTER"] ?? "node";
 
 const adapters = {
-	"cloudflare-workers": adapterCfw({}),
-	cloudflare: adapterCf(),
-	vercel: vercel({ edge: false, split: false }),
-	netlify: netlify({ edge: false, split: false }),
+	// "cloudflare-workers": adapterCfw({}),
+	// cloudflare: adapterCf(),
+	vercel: vercel({ split: false }),
+	netlify: netlify({ split: false }),
 	node: node({ precompress: true }),
 };
 

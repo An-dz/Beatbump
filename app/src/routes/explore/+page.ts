@@ -6,7 +6,7 @@ export const load: PageLoad = async ({ fetch, url, parent }) => {
 	const response = await data.json();
 
 	if (!data.ok) {
-		throw error(500, data.statusText);
+		error(500, data.statusText);
 	}
 	return {
 		response,

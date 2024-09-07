@@ -16,7 +16,7 @@ export const load: PageLoad = (async ({
 		)}`,
 	);
 	if (!response.ok) {
-		throw error(500, response.statusText);
+		error(500, response.statusText);
 	}
 	const data = await response.json();
 	const { header, contents } = data;

@@ -81,6 +81,6 @@ export const GET: RequestHandler = async ({ url }) => {
 	} catch (err) {
 		console.error(err);
 
-		throw error(500, err);
+		error(500, err);
 	}
 };

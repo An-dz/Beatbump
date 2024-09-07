@@ -60,7 +60,7 @@ export const GET: RequestHandler = async ({ url }): Promise<IResponse<NextEndpoi
 		headers: {},
 	}).then((response) => {
 		if (!response.ok) {
-			throw error(500, response.statusText);
+			error(500, response.statusText);
 		}
 		return response.json();
 	});
@@ -112,7 +112,7 @@ function parseNextBody(data) {
 	} catch (err) {
 		console.error(err);
 
-		throw error(500, err);
+		error(500, err);
 	}
 }
 

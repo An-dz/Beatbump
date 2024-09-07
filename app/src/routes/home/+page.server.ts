@@ -6,7 +6,7 @@ export const load: PageLoad = async ({ fetch, data: data$1, url }) => {
 	const response = await fetch("/home.json");
 	const data = await response.json();
 	if (!response.ok) {
-		throw error(500, `Error: ${response.statusText}`);
+		error(500, `Error: ${response.statusText}`);
 	}
 	const { carousels, headerThumbnail = undefined, continuations, visitorData } = data;
 

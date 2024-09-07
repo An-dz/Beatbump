@@ -2,7 +2,7 @@ import { buildAPIRequest } from "$api/request";
 import { MoodsAndGenresItem, MusicResponsiveListItemRenderer, MusicTwoRowItemRenderer } from "$lib/parsers";
 
 import type { CarouselHeader } from "$lib/types";
-import type { ICarouselTwoRowItem, ITwoRowItemRenderer } from "$lib/types/musicCarouselTwoRowItem";
+import type { ICarouselTwoRowItem } from "$lib/types/musicCarouselTwoRowItem";
 import type { IListItemRenderer } from "$lib/types/musicListItemRenderer";
 import { error, type RequestHandler, json } from "@sveltejs/kit";
 import type { IMusicResponsiveListItemRenderer, IMusicTwoRowItemRenderer } from "$lib/types/innertube/internals";
@@ -23,7 +23,7 @@ export const GET: RequestHandler = async () => {
 		headers: null,
 	}).then((res) => {
 		if (!res.ok) {
-			throw error(res.status, res.statusText);
+			error(res.status, res.statusText);
 		}
 		return res.json();
 	});

@@ -9,7 +9,7 @@ export const load = async ({ fetch }: Parameters<PageLoad>[0]) => {
 		"/trending.json?q=browse",
 	).then((res) => {
 		if (!res.ok) {
-			throw error(res.status, res.statusText);
+			error(res.status, res.statusText);
 		}
 		return res.json();
 	});

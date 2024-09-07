@@ -8,7 +8,7 @@ export const load: PageLoad = async ({ fetch }) => {
 		"/trending.json?q=browse",
 	).then((res) => {
 		if (!res.ok) {
-			throw error(res.status, res.statusText);
+			error(res.status, res.statusText);
 		}
 		return res.json();
 	});
