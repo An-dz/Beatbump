@@ -49,7 +49,7 @@
 	<div class="progress-bar-wrapper">
 		<div
 			class="progress-bar"
-			transition:fade
+			transition:fade|global
 			on:pointerover={(e) => {
 				hovering = true;
 			}}
@@ -65,8 +65,8 @@
 			{#if hovering}
 				<div
 					class="hover"
-					in:fade={{ duration: 180, delay: 0, easing: expoIn }}
-					out:fade={{ duration: 240, delay: 120, easing: sineIn }}
+					in:fade|global={{ duration: 180, delay: 0, easing: expoIn }}
+					out:fade|global={{ duration: 240, delay: 120, easing: sineIn }}
 					style="transform:scaleX({hoverWidth});"
 				/>
 			{/if}
