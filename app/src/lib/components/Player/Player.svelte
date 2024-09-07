@@ -156,6 +156,7 @@
 			>
 				<span class="now-playing-title">{$currentTrack?.title}</span>
 				<span class="now-playing-artist">{$currentTrack?.artistInfo?.artist[0]?.text}</span>
+				<span class="now-playing-albumn">{$currentTrack?.album?.title}</span>
 			</div>
 		{:else}
 			<img
@@ -318,7 +319,7 @@
 		line-clamp: 1;
 		overflow: hidden;
 	}
-	.now-playing-artist {
+	.now-playing-artist, .now-playing-albumn {
 		display: block;
 		font-size: 12px;
 		color: rgba(255, 255, 255, 0.7) !important;
