@@ -30,6 +30,7 @@ export interface IPlaylistItem {
 }
 export type Header = {
 	description?: string;
+	browseId?: string;
 	artist?: any[];
 	subtitles?: any[];
 	thumbnails?: Array<Thumbnail>;

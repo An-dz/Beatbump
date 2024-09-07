@@ -48,11 +48,11 @@ async function getPlaylistContinuation(
 				clientVersion: "1.20220404.01.00",
 				hl: "en",
 				visitorData: visitorData,
-				originalUrl: "https://music.youtube.com/playlist?list=" + id,
+				originalUrl: `https://music.youtube.com/playlist?list=${id}`,
 			},
 		},
 		headers: {
-			referer: "https://music.youtube.com/playlist?list=" + id,
+			referer: `https://music.youtube.com/playlist?list=${id}`,
 		},
 		params: {},
 		continuation,
@@ -112,7 +112,7 @@ async function getPlaylist(browseId: string, referrer: string) {
 							pwaInstallabilityStatus: "PWA_INSTALLABILITY_STATUS_UNKNOWN",
 						},
 						utcOffsetMinutes: -new Date().getTimezoneOffset(),
-						originalUrl: "https://music.youtube.com/playlist?list=" + browseId,
+						originalUrl: `https://music.youtube.com/playlist?list=${browseId}`,
 						visitorData: "CgtQc1BrdVJNNVdNRSiImZ6KBg%3D%3D",
 					},
 
@@ -134,7 +134,7 @@ async function getPlaylist(browseId: string, referrer: string) {
 				"X-Goog-Visitor-Id": "CgtQc1BrdVJNNVdNRSiImZ6KBg%3D%3D",
 
 				"User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-				referer: "https://music.youtube.com/playlist?list=" + referrer || browseId,
+				referer: `https://music.youtube.com/playlist?list=${referrer || browseId}`,
 			},
 		},
 	);
@@ -143,44 +143,34 @@ async function getPlaylist(browseId: string, referrer: string) {
 	}
 
 	const data = await response.json();
-	let musicDetailHeaderRenderer: Partial<Record<string, any>> = {};
-	if (Object.prototype.hasOwnProperty.call(data, "header")) {
-		const { musicDetailHeaderRenderer: detailHeader = {} } = data?.header;
-		musicDetailHeaderRenderer = detailHeader;
-	}
+	const sectionListRenderer = data?.contents?.twoColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer?.content?.sectionListRenderer;
+	const musicPlaylistShelfRenderer = data?.contents?.twoColumnBrowseResultsRenderer.secondaryContents?.sectionListRenderer?.contents[0]?.musicPlaylistShelfRenderer;
+	const musicDetailHeaderRenderer: Partial<Record<string, any>> = sectionListRenderer?.contents[0]?.musicResponsiveHeaderRenderer;
 	const visitorData = data?.responseContext?.visitorData;
 	const contents =
-			data?.contents?.singleColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer?.content?.sectionListRenderer?.contents[0]
-				?.musicPlaylistShelfRenderer.contents,
-		playlistId =
-			data?.contents?.singleColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer?.content?.sectionListRenderer?.contents[0]
-				?.musicPlaylistShelfRenderer.playlistId,
-		continuations =
-			data?.contents?.singleColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer?.content?.sectionListRenderer?.contents[0]
-				?.musicPlaylistShelfRenderer?.continuations;
-	const _carouselContinuation =
-		data?.contents?.singleColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer?.content?.sectionListRenderer
-			?.continuations || null;
+		musicPlaylistShelfRenderer?.contents;
+	const playlistId =
+		musicPlaylistShelfRenderer?.playlistId;
+	const continuations =
+		musicPlaylistShelfRenderer?.continuations;
+	const _carouselContinuation = sectionListRenderer?.continuations || null;
 
 	// console.log(musicDetailHeaderRenderer)
-	const cont: NextContinuationData = data?.contents?.singleColumnBrowseResultsRenderer?.tabs[0]?.tabRenderer?.content
-		?.sectionListRenderer?.continuations
-		? Array.isArray(continuations) && continuations[0]?.nextContinuationData
-			? continuations[0]?.nextContinuationData
-			: _carouselContinuation[0]?.nextContinuationData
-		: null;
+	const cont: NextContinuationData = Array.isArray(continuations) && continuations[0]?.nextContinuationData
+		? continuations[0]?.nextContinuationData
+		: _carouselContinuation ? _carouselContinuation[0]?.nextContinuationData : null;
 
 	const getHeader = () => {
 		const createArray = (key: string) =>
-			Array.isArray(musicDetailHeaderRenderer[key]["runs"]) &&
+			Array.isArray(musicDetailHeaderRenderer[key].runs) &&
 			(() => {
 				const arr = [];
-				for (const { text } of musicDetailHeaderRenderer[key]["runs"]) {
+				for (const { text } of musicDetailHeaderRenderer[key].runs) {
 					arr.push(text);
 				}
 				return arr;
 			})();
-		const ALLOWED_KEYS = new Set(["subtitle", "secondSubtitle", "description", "thumbnail", "title"]);
+		const ALLOWED_KEYS = new Set(["subtitle", "secondSubtitle", "straplineTextOne", "thumbnail", "title"]);
 		// const key_map = Object.keys(musicDetailHeaderRenderer);
 		// let len = key_map.length;
 		for (const key in musicDetailHeaderRenderer) {
@@ -188,24 +178,26 @@ async function getPlaylist(browseId: string, referrer: string) {
 				delete musicDetailHeaderRenderer[key];
 			}
 			if (key === "subtitle" || key === "secondSubtitle") {
-				musicDetailHeaderRenderer[key] = musicDetailHeaderRenderer[key]["runs"]["length"] !== 0 ? createArray(key) : [];
+				musicDetailHeaderRenderer[key] = musicDetailHeaderRenderer[key].runs.length !== 0 ? createArray(key) : [];
 			}
 			if (
-				key === "description" &&
+				key === "straplineTextOne" &&
 				Array.isArray(musicDetailHeaderRenderer[key]?.runs) &&
 				musicDetailHeaderRenderer[key]?.runs.length !== 0
 			) {
-				musicDetailHeaderRenderer[key] = musicDetailHeaderRenderer[key].runs[0]?.text || undefined;
+				musicDetailHeaderRenderer.description = musicDetailHeaderRenderer[key].runs[0]?.text || undefined;
+				musicDetailHeaderRenderer.browseId = musicDetailHeaderRenderer[key].runs[0]?.navigationEndpoint?.browseEndpoint?.browseId;
+				delete musicDetailHeaderRenderer[key];
 			}
 			if (key === "thumbnail") {
-				musicDetailHeaderRenderer[key + "s"] =
-					musicDetailHeaderRenderer[key]?.croppedSquareThumbnailRenderer?.thumbnail?.thumbnails || null;
+				musicDetailHeaderRenderer[`${key}s`] =
+					musicDetailHeaderRenderer[key]?.musicThumbnailRenderer?.thumbnail?.thumbnails || null;
 				delete musicDetailHeaderRenderer[key];
 			}
 			if (key === "title")
-				musicDetailHeaderRenderer[key] = musicDetailHeaderRenderer[key]["runs"][0]["text"] || "Error";
+				musicDetailHeaderRenderer[key] = musicDetailHeaderRenderer[key].runs[0].text || "Error";
 		}
-		musicDetailHeaderRenderer["playlistId"] = playlistId;
+		musicDetailHeaderRenderer.playlistId = playlistId;
 		ALLOWED_KEYS.clear();
 	};
 	getHeader();
@@ -217,7 +209,7 @@ async function getPlaylist(browseId: string, referrer: string) {
 		continuations: cont,
 		tracks,
 		visitorData,
-		carouselContinuations: _carouselContinuation && _carouselContinuation[0].nextContinuationData,
+		carouselContinuations: _carouselContinuation?.[0].nextContinuationData,
 		header: musicDetailHeaderRenderer,
 	});
 }
@@ -232,7 +224,7 @@ function parseTrack(contents = [], playlistId?: string): Array<IListItemRenderer
 
 function parseHeader(header: Header[]): CarouselHeader[] {
 	return map(header, ({ musicCarouselShelfBasicHeaderRenderer }) => ({
-		title: musicCarouselShelfBasicHeaderRenderer["title"]["runs"][0].text,
+		title: musicCarouselShelfBasicHeaderRenderer.title.runs[0].text,
 	}));
 }
 
