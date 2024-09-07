@@ -826,7 +826,7 @@ class BaseAudioPlayer extends EventEmitter<AudioPlayerEvents> implements IAudioP
 			this._nextTrackURL = null;
 			this._durationStore.set(this._player.duration);
 			const sessionList = get(SessionListService);
-			currentTitle.set(sessionList.mix[sessionList.position]?.title);
+			currentTitle.set(`${sessionList.mix[sessionList.position]?.title} - ${sessionList.mix[sessionList.position]?.artistInfo?.artist[0].text}`);
 
 			window.bbPlayer = {
 				src: this.__srcUrl,
