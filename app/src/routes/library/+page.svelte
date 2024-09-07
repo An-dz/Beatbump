@@ -57,7 +57,7 @@
 
 			favorites = hasFavorites.length !== 0 && [...hasFavorites.slice(0, 5)];
 			playlists = hasPlaylists.length !== 0 && [...hasPlaylists];
-			console.log(hasPlaylists, hasFavorites);
+			// console.log(hasPlaylists, hasFavorites);
 			return { favorites, playlists };
 		} catch (err) {
 			console.error(err);

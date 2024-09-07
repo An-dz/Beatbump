@@ -13,7 +13,7 @@ worker.onmessage = async <
 	event: MessageEvent<{ action: Action; type: Type; params: [...Parameters<Fn>] }>,
 ) => {
 	const { action, type, params } = event.data;
-	console.log(action, type, params);
+	// console.log(action, type, params);
 	await dbHandler<Action, Type, Key, Fn>(action, type, ...params)
 		.then((result) => postMessage(result))
 		.catch((err) => {

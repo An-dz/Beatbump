@@ -86,14 +86,14 @@
 
 		id = "bb-" + Math.random().toString(36).substr(2, 7);
 		peer = new RTC(id);
-		console.log(`Peer ${id} created!`);
+		// console.log(`Peer ${id} created!`);
 		if (!type) {
-			console.log(peer);
+			// console.log(peer);
 			peer.on("connection", (conn) => {
-				console.log(conn);
+				// console.log(conn);
 				conn.on("data", async (data) => {
 					connection = { data, conn };
-					console.log(connection);
+					// console.log(connection);
 					// When data is received from sender,
 					// write the contents to IndexedDB
 					const ArrayOfStores = JSON.parse(data as string);
@@ -108,7 +108,7 @@
 								await setMultiplePlaylists([...itemList?.items]);
 							}
 						});
-						console.log(ArrayOfStores);
+						// console.log(ArrayOfStores);
 					}
 
 					notify("Data sync completed!", "success");
@@ -146,7 +146,7 @@
 			// Sender Connection
 			const data = await getObjectStores(kindOfData);
 			const chData = await JSON.stringify(data);
-			console.log(data, chData);
+			// console.log(data, chData);
 			const conn = peer.connect(peerID);
 			conn.on("open", () => {
 				// Transfer to Receiver

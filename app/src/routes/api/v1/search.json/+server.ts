@@ -53,7 +53,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			throw error(response.status, response.statusText);
 		}
 		const data = await response.json();
-		console.log("RESPONSE", data);
+		// console.log("RESPONSE", data);
 
 		const hasTabs = Array.isArray(data?.contents?.tabbedSearchResultsRenderer?.tabs);
 
@@ -65,7 +65,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			ctoken !== ""
 				? parseContinuation(continuationContents, filter as SearchFilter)
 				: parseContents(contents, filter as SearchFilter);
-		console.log("RESULTS", results);
+		// console.log("RESULTS", results);
 		return json(results);
 	} catch (err) {
 		console.error(err);

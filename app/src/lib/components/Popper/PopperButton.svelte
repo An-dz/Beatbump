@@ -37,7 +37,7 @@
 				activeNode.set(new WeakRef(node));
 			}
 			const rect = node.getBoundingClientRect();
-			console.log(metadata);
+			// console.log(metadata);
 			x = rect.left;
 			y = rect.top;
 			bottom = rect.bottom;

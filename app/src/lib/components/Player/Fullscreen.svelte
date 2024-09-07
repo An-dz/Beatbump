@@ -166,7 +166,7 @@
 		})();
 	}
 
-	$: console.log($immersiveQueue, $filterAutoPlay, $theme);
+	// $: console.log($immersiveQueue, $filterAutoPlay, $theme);
 
 	function slideInOut(
 		node: HTMLElement,
@@ -204,7 +204,7 @@
 			DropdownItems = undefined;
 		}
 	}
-	$: console.log($related);
+	// $: console.log($related);
 </script>
 
 {#if $queue.length && state === "open"}

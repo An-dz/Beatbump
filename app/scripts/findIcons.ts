@@ -18,7 +18,7 @@ function recurse(fPath: string) {
 			const res = recurse(join(item));
 			Object.keys(res).forEach((key) => {
 				const set = res[key] as Set<string & { text: string; icon: string; action: Promise<void> | void }>;
-				console.log(set);
+				// console.log(set);
 
 				if (key === "text")
 					set.forEach((item) => {
@@ -42,7 +42,7 @@ function recurse(fPath: string) {
 				hasObject.forEach((obj) => {
 					try {
 						const _this = new Function(`return (${obj})`)();
-						console.log(_this);
+						// console.log(_this);
 						if (!keys.has(_this["text"])) {
 							keys.add(_this["text"]);
 						}

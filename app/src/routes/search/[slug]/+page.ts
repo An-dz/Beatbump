@@ -17,7 +17,7 @@ export const load: PageLoad = async ({ url, params, fetch }): Promise<SearchResp
 	const response = await fetch(apiUrl);
 	const data = (await response.json()) as SearchResponse;
 	Object.assign(data, { filter });
-	console.log(data);
+	// console.log(data);
 	// if (response.ok) {
 	return data;
 	// }

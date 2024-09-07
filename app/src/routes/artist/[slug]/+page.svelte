@@ -25,7 +25,7 @@
 
 	CTX_ListItem.set({ page: "artist", innerWidth });
 
-	$: console.log(data);
+	// $: console.log(data);
 </script>
 
 <Header
@@ -117,8 +117,6 @@
 		margin: 0;
 		padding: 0;
 		width: 100%;
-	}
-	section {
 	}
 	.songs {
 		margin-bottom: 1rem;

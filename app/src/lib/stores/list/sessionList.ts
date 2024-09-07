@@ -323,7 +323,7 @@ class ListService implements ISessionListService {
 				visitorData = "",
 			} = args;
 			await tick();
-			console.log("this.initPlaylistSession");
+			// console.log("this.initPlaylistSession");
 
 			if (this.state.currentMixType !== "playlist" || this.state.currentMixId !== playlistId) {
 				this.updatePosition(typeof index === "number" ? index : 0);

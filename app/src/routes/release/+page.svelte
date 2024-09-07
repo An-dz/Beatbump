@@ -25,7 +25,7 @@
 	};
 	const playGroupSession = () => {
 		setId();
-		console.log(releaseInfo.playlistId);
+		// console.log(releaseInfo.playlistId);
 		groupSession.setPlaylistMix(releaseInfo.playlistId);
 		// currentTitle.set(items[0].title);
 	};

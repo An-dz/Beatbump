@@ -33,7 +33,7 @@
 				});
 			})
 			.add("Play Song Radio", async () => {
-				console.log(item);
+				// console.log(item);
 				list.initAutoMixSession({ videoId: item.videoId, loggingContext: item?.loggingContext });
 			})
 			.add("Add to Playlist", async () => {

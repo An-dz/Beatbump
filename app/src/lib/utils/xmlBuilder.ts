@@ -64,6 +64,6 @@ export function buildXML(input: XMLRoot) {
 	if (input["nodes"]) {
 		output += buildElements(input["nodes"], depth, isFirstLine);
 	}
-	console.log(output);
+	// console.log(output);
 	return output;
 }
