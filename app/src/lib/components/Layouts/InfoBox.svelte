@@ -4,6 +4,7 @@
 	import { createEventDispatcher } from "svelte";
 	import Button from "../Button";
 	import PopperButton from "../Popper/PopperButton.svelte";
+	import { goto } from "$app/navigation";
 
 	type Button<
 		Type extends string = string,
@@ -17,6 +18,7 @@
 	export let thumbnail: string;
 	export let title: string = "";
 	export let description = undefined;
+	export let browseId = undefined;
 	export let subtitles = [];
 	export let secondSubtitle = [];
 	export let buttons: Button[] = [];
@@ -83,12 +85,22 @@
 		</div>
 		{#if description && type === "playlist"}
 			{#key description}
-				<p
-					class="secondary subtitle description"
-					class:hidden={width < 640 ? true : false}
-				>
-					{description}
-				</p>
+				{#if browseId}
+					<a
+						class="secondary subtitle description"
+						href={`/artist/${browseId}`}
+						on:click|preventDefault={() => {
+							goto(`/artist/${browseId}`);
+						}}>{description}</a
+					>
+				{:else}
+					<p
+						class="secondary subtitle description"
+						class:hidden={width < 640 ? true : false}
+					>
+						{description}
+					</p>
+				{/if}
 				<span class="secondary subtitle-group">
 					<p class="secondary subtitle">
 						{Array.isArray(subtitles) && subtitles.length !== 0 ? subtitles.join(" ") : ""}
