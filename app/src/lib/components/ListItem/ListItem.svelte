@@ -303,6 +303,22 @@
 					{/each}
 				{/if}
 			</div>
+			{#if item.album}
+				<div class="album secondary">
+					{#if item.album?.browseId}
+						<a
+							class="album secondary"
+							href={`/release?type=${item.album.pageType}&id=${item.album.browseId}`}
+							on:click|preventDefault={() => {
+								goto(`/release?type=${item.album.pageType}&id=${item.album.browseId}`);
+								fullscreenStore.set("closed");
+							}}>{item.album.title}</a
+						>
+					{:else}
+						<span>{item.album.title} </span>
+					{/if}
+				</div>
+			{/if}
 		</div>
 	</div>
 	{#if $isMobileMQ || isHovering}

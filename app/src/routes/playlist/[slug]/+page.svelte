@@ -21,6 +21,7 @@
 		header = {
 			thumbnails: [],
 			description: "",
+			browseId: "",
 			playlistId: "",
 			secondSubtitle: [],
 			subtitles: [],
@@ -38,6 +39,7 @@
 	let width = 640;
 	let pageTitle = header?.title || "";
 	let description: string;
+	let browseId: string;
 	let isLoading = false;
 	let hasData = false;
 	let carousel: any;
@@ -55,6 +57,7 @@
 				? header?.description.substring(0, 240) + "..."
 				: header?.description
 			: "";
+	browseId = header?.browseId;
 	const getCarousel = async () => {
 		if (!carouselContinuations) return;
 		const response = await fetch(
@@ -213,7 +216,7 @@
 			},
 		},
 	];
-	let filter = value ? value : options[0].params;
+	// let filter = value ? value : options[0].params;
 	// $: browser && console.log(data);
 </script>
 
@@ -236,6 +239,7 @@
 				: undefined}
 			title={pageTitle}
 			{description}
+			{browseId}
 			buttons={[
 				{
 					action: () => {
@@ -320,9 +324,6 @@
 </main>
 
 <style lang="scss">
-	footer {
-	}
-
 	.list {
 		display: block;
 		height: 100%;
