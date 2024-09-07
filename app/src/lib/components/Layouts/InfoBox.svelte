@@ -42,16 +42,16 @@
 				dispatch("playlistAdd");
 			},
 		},
-		releasePageContext.has()
-			? {
-					text: "Shuffle",
-					action: () => {
-						dispatch("shuffle");
-					},
-					icon: "shuffle",
-			  }
-			: undefined,
 	];
+	if (releasePageContext.has()) {
+		DropdownItems.push({
+			text: "Shuffle",
+			action: () => {
+				dispatch("shuffle");
+			},
+			icon: "shuffle",
+		})
+	}
 
 	let width;
 	const dispatch = createEventDispatcher();
