@@ -31,6 +31,7 @@ class IDBService {
 		return await new Promise<Awaited<ReturnType<Fn>>["data"]>((resolve, reject) => {
 			// Unfortunately in order to cleanup the event listener after
 			// We have to define `process` here.
+			const worker = this.worker;
 			function process<T extends IDBMessage<Awaited<ReturnType<Fn>>["data"]>>(event: MessageEvent<T>) {
 				const { data } = event;
 
@@ -43,11 +44,11 @@ class IDBService {
 				}
 
 				if (data.data) {
-					this.worker.onmessage = null;
+					worker.onmessage = null;
 					resolve(data.data);
 				}
 
-				this.worker.onmessage = null;
+				worker.onmessage = null;
 				resolve(data.data);
 			}
 
