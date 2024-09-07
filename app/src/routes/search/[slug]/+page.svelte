@@ -60,7 +60,7 @@
 </script>
 
 <Header
-	title="Search"
+	title={`Search ${decodeURIComponent($page.params.slug)}`}
 	desc={`Search results for ${decodeURIComponent($page.params.slug)}`}
 	url={$page.url.pathname}
 />
