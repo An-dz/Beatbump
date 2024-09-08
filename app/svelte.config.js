@@ -40,10 +40,13 @@ const config = {
 		adapter: dev ? node() : adapter,
 
 		alias: {
-			$stores: path.resolve("./src/lib/stores"),
 			$api: path.resolve("./src/routes/api/_lib"),
+			"$app/*": path.resolve("./.svelte-kit/runtime/app"),
 			$components: path.resolve("./src/lib/components"),
 			$env: path.resolve("./src/env.ts"),
+			$lib: path.resolve("./src/lib"),
+			$stores: path.resolve("./src/lib/stores"),
+			"$lib/*": path.resolve("./src/lib"),
 		},
 		prerender: { concurrency: 3 },
 		files: {

@@ -22,7 +22,7 @@ const config: UserConfig = {
 		include: ["src/**/*.{test,spec}.{js,ts}"],
 	},
 	worker: {
-		plugins: [],
+		plugins: () => [],
 		format: "es",
 		rollupOptions: { treeshake: { preset: "recommended" }, external: ["hls.js", "peerjs"], output: { format: "iife" } },
 	},

@@ -5,15 +5,6 @@
 		"strict": false,
 		"strictFunctionTypes": false,
 		"noUnusedLocals": true,
-		"paths": {
-			"$components/*": ["./src/lib/components/*"],
-			"$stores/*": ["./src/lib/stores/*"],
-			"$api/*": ["./src/routes/api/_lib/*"],
-			"$lib": ["./src/lib"],
-			"$lib/*": ["./src/lib/*"],
-			"$env": ["./src/env.ts"],
-			"$app/*": ["./.svelte-kit/runtime/app/*"]
-		}
 	},
 	"ts-node": {
 		"compilerOptions": { "allowSyntheticDefaultImports": true, "resolveJsonModule": true },
