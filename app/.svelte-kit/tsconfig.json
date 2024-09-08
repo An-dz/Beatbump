@@ -1,17 +1,14 @@
 {
 	"compilerOptions": {
 		"paths": {
-			"$stores": [
-				"../src/lib/stores"
-			],
-			"$stores/*": [
-				"../src/lib/stores/*"
-			],
 			"$api": [
 				"../src/routes/api/_lib"
 			],
 			"$api/*": [
 				"../src/routes/api/_lib/*"
+			],
+			"$app/*": [
+				"./runtime/app/*"
 			],
 			"$components": [
 				"../src/lib/components"
@@ -24,6 +21,12 @@
 			],
 			"$lib": [
 				"../src/lib"
+			],
+			"$stores": [
+				"../src/lib/stores"
+			],
+			"$stores/*": [
+				"../src/lib/stores/*"
 			],
 			"$lib/*": [
 				"../src/lib/*"
