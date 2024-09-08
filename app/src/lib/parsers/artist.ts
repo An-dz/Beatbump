@@ -92,7 +92,15 @@ function parseCarousel(items = [], _header: { [index: string]: any }) {
 	let hasButtonRenderer = false;
 	const contents: ICarouselTwoRowItem[] = [];
 
-	iter(items, (item) => contents.push(MusicTwoRowItemRenderer(item)));
+	iter(items, (item) => {
+		if (item.musicTwoRowItemRenderer) {
+			return contents.push(MusicTwoRowItemRenderer(item))
+		}
+		else if (item.musicMultiRowListItemRenderer) {
+			// TODO
+			// return contents.push(MusicMultiRowListItemRenderer(item))
+		}
+	});
 
 	if (_header["moreContentButton"] && _header["moreContentButton"]["buttonRenderer"]) {
 		hasButtonRenderer = true;
