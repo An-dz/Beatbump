@@ -518,16 +518,17 @@
 
 		contain: paint;
 
-		&:focus-visible,
-		&:hover,
-		&:focus-within {
-			@include active;
-		}
 		position: absolute;
 		top: 0;
 		height: 100%;
 		overflow: hidden;
 		border-radius: var(--thumbnail-radius);
+
+		&:focus-visible,
+		&:hover,
+		&:focus-within {
+			@include active;
+		}
 	}
 	.hidden {
 		display: none !important;

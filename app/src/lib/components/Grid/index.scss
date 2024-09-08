@@ -5,6 +5,10 @@
 	margin: 0 auto;
 	--grid-column-count: 2;
 	--thumbnail-size: 12.5rem;
+	--column-width: calc(var(--thumbnail-size) + 0.75rem);
+	--grid-columns: repeat(auto-fill, minmax(var(--column-width), 1fr));
+
+	grid-template-columns: var(--grid-columns);
 
 	@media screen and (min-width: 460px) and (max-width: 619px) {
 		--grid-column-count: 3;
@@ -22,10 +26,6 @@
 		--thumbnail-size: 13rem;
 		--grid-column-count: 7;
 	}
-	--column-width: calc(var(--thumbnail-size) + 0.75rem);
-	--grid-columns: repeat(auto-fill, minmax(var(--column-width), 1fr));
-
-	grid-template-columns: var(--grid-columns);
 }
 
 .grid-container {

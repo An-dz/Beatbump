@@ -104,6 +104,16 @@ a:not(.no-style),
 	// contain: paint;
 	font-size: 0.5em;
 	text-rendering: optimizeLegibility;
+	font-size: calc(1em * 0.25  + 4px);
+	padding: 0.0875rem;
+	aspect-ratio: 1/1;
+	background: #ffffffbf;
+	border-radius: clamp(calc(calc(0.25em * 0.5) + .1px), 16px * .0125, 4px);
+	vertical-align: middle;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue,
+		sans-serif;
+
+	color: rgb(8, 8, 8) !important;
 	&::before {
 		content: "E";
 		position: absolute;
@@ -116,16 +126,6 @@ a:not(.no-style),
 		aspect-ratio: 1/1;
 		line-height: 1.1;
 	}
-	font-size: calc(1em * 0.25  + 4px);
-	padding: 0.0875rem;
-	aspect-ratio: 1/1;
-	background: #ffffffbf;
-	border-radius: clamp(calc(calc(0.25em * 0.5) + .1px), 16px * .0125, 4px);
-	vertical-align: middle;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue,
-		sans-serif;
-
-	color: rgb(8, 8, 8) !important;
 }
 
 a small {

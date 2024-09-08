@@ -9,9 +9,10 @@
 	justify-content: flex-start;
 	align-items: baseline;
 	/* white-space: pre; */
+	margin-bottom: 1.38rem;
 
 	@include content-width();
-	margin-bottom: 1.38rem;
+
 	h1,
 	h2,
 	.h1,

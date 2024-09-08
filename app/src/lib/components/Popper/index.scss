@@ -47,6 +47,9 @@
 }
 hr {
 	touch-action: none;
+	border: none;
+	width: 90%;
+	position: relative;
 	&::before {
 		position: absolute;
 		inset: 0;
@@ -60,9 +63,6 @@ hr {
 		line-height: inherit;
 		z-index: 5;
 	}
-	border: none;
-	width: 90%;
-	position: relative;
 }
 .dd-button {
 	cursor: pointer;

@@ -358,6 +358,11 @@
 		padding-bottom: 0.3125em;
 	}
 	hr {
+		overscroll-behavior: contain;
+		width: 100%;
+		border: none;
+		position: relative;
+		// z-index: 100;
 		&.horz::before {
 			position: absolute;
 			inset: 0;
@@ -392,14 +397,9 @@
 			opacity: 1;
 			transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms opacity;
 		}
-		overscroll-behavior: contain;
-		width: 100%;
-		border: none;
-		position: relative;
 		&.vertical {
 			height: 100%;
 		}
-		// z-index: 100;
 	}
 
 	.horz {
@@ -433,6 +433,11 @@
 		vertical-align: middle;
 	}
 	.list-wrapper {
+		position: relative;
+		width: 100%;
+		padding: 0.25em;
+		overflow-y: scroll;
+
 		&::after {
 			position: absolute;
 			bottom: 0;
@@ -440,10 +445,6 @@
 			box-shadow: 0 0 4px #000;
 			content: "";
 		}
-		position: relative;
-		width: 100%;
-		padding: 0.25em;
-		overflow-y: scroll;
 
 		&::-webkit-scrollbar {
 			width: 0;

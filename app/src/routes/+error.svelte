@@ -46,11 +46,8 @@
 </main>
 
 <style lang="scss">
-	.logolink {
-	}
 	main {
 		text-align: center;
-
 		align-items: center;
 	}
 	p {

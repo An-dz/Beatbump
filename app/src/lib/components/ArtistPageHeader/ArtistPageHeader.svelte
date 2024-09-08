@@ -302,8 +302,6 @@
 			z-index: -5;
 			content: "";
 		}
-
-		top: 0;
 	}
 	.header-thumbnail {
 		z-index: -1;
@@ -326,11 +324,13 @@
 	.artist-content {
 		position: relative;
 		z-index: 1;
+		padding-bottom: 0 !important;
+		margin: 0 auto;
+
+		max-width: $content-width-mobile;
 
 		@include content-spacing($type: "padding");
 		@include content-width();
-		padding-bottom: 0 !important;
-		margin: 0 auto;
 
 		.content-wrapper {
 			display: inline-flex;
@@ -372,7 +372,6 @@
 				}
 			}
 		}
-		max-width: $content-width-mobile;
 		@media only screen and (min-width: 1080px) and (max-width: 1366px) {
 			max-width: $content-width-md;
 		}

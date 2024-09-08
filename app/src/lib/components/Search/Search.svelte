@@ -192,12 +192,6 @@
 		background: inherit;
 
 		li {
-			&:first-child {
-				border-radius: $xs-radius $xs-radius 0 0;
-			}
-			&:last-child {
-				border-radius: 0 0 $xs-radius $xs-radius;
-			}
 			transition: background-color cubic-bezier(0.47, 0, 0.745, 0.715) 80ms;
 
 			padding: 0.7em 0.5em;
@@ -211,6 +205,12 @@
 			// height: 100%;
 			// max-height: 5.125em;
 			// border-bottom: 1px solid #1a1a1a;
+			&:first-child {
+				border-radius: $xs-radius $xs-radius 0 0;
+			}
+			&:last-child {
+				border-radius: 0 0 $xs-radius $xs-radius;
+			}
 			&:hover {
 				background: rgba(255, 255, 255, 0.1);
 			}

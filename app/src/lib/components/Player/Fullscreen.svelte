@@ -603,6 +603,11 @@
 	}
 	hr {
 		touch-action: none;
+		overscroll-behavior: contain;
+		width: 100%;
+		border: none;
+		position: relative;
+		// z-index: 100;
 
 		&.horz::before {
 			position: absolute;
@@ -638,14 +643,9 @@
 			opacity: 1;
 			transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms opacity;
 		}
-		overscroll-behavior: contain;
-		width: 100%;
-		border: none;
-		position: relative;
 		&.vertical {
 			height: 100%;
 		}
-		// z-index: 100;
 	}
 	.mobile {
 		min-height: 100% !important;
@@ -792,13 +792,14 @@
 		touch-action: none;
 	}
 	.handle.vertical {
+		left: 0;
+		position: absolute;
+		transition: transform cubic-bezier(0.25, 0.46, 0.45, 0.94) 400ms;
+
 		@media screen and (max-width: 719px) and (hover: hover) {
 			display: none;
 			visibility: none;
 		}
-		left: 0;
-		position: absolute;
-		transition: transform cubic-bezier(0.25, 0.46, 0.45, 0.94) 400ms;
 
 		@media screen and (min-width: 720px) and (hover: hover) {
 			place-items: center;
