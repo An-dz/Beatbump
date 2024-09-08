@@ -155,13 +155,15 @@
 			<div
 				class="container"
 				style="
-    font-weight: 400;
-    font-family: 'CommissionerVariable';
-    letter-spacing: -0.02em;"
+					font-weight: 400;
+					font-family: 'CommissionerVariable';
+					letter-spacing: -0.02em;"
 			>
 				<span class="now-playing-title">{$currentTrack?.title}</span>
 				<span class="now-playing-artist">{$currentTrack?.artistInfo?.artist[0]?.text}</span>
-				<span class="now-playing-albumn">{$currentTrack?.album?.title}</span>
+				{#if $currentTrack?.album}
+					<span class="now-playing-album">{$currentTrack?.album?.title}</span>
+				{/if}
 			</div>
 		{:else}
 			<img
@@ -324,7 +326,7 @@
 		line-clamp: 1;
 		overflow: hidden;
 	}
-	.now-playing-artist, .now-playing-albumn {
+	.now-playing-artist, .now-playing-album {
 		display: block;
 		font-size: 12px;
 		color: rgba(255, 255, 255, 0.7) !important;
