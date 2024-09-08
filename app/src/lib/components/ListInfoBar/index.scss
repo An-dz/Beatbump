@@ -1,4 +1,8 @@
 .info-bar {
+	position: sticky;
+	top: 0;
+	background: var(--base-bg);
+	z-index: 1;
 	display: grid;
 	grid-template-rows: 1fr;
 	grid-template-columns: [index] 6.25rem 1fr 2.9rem;
