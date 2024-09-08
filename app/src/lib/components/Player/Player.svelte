@@ -64,6 +64,7 @@
 </script>
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { browser } from "$app/environment";
 	import { goto } from "$app/navigation";
 	import Icon from "$components/Icon/Icon.svelte";
@@ -94,6 +95,10 @@
 	let volumeHover;
 
 	$: isPlaying = $paused;
+
+	onMount(() => {
+		volume = AudioPlayer.player?.volume;
+	});
 
 	messenger.listen("player", (data) => {
 		AudioPlayer.play();
