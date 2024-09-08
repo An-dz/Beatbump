@@ -166,6 +166,7 @@
 		on:lostfocus={onClose}
 		in:slide|global={{ delay: 125, duration: 125 }}
 		out:slide|global={{ duration: 125 }}
+		role="menu"
 		class={type === "player" ? "dd-player" : "dd-menu"}
 		style="transform: translate({posX}px, {posY}px)"
 		tabindex="0"
@@ -175,6 +176,7 @@
 				on:click={item.action}
 				on:click={onClose}
 				on:keydown={(event) => handleKeyDown(event, item.action)}
+				role="menuitem"
 				text={item.text}
 				icon={item.icon}
 			/>

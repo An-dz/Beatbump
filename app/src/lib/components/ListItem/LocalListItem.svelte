@@ -22,7 +22,6 @@
 	import { deleteSongFromPlaylist } from "$lib/workers/db/db";
 	export let item: Item;
 	export let idx: number;
-	export let ctx: Record<string, unknown> = {};
 
 	let parent: HTMLElement;
 
